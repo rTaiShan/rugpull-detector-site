@@ -15,14 +15,14 @@ export default function Navigator() {
             ? "Checking Service Status..."
             : isAvailable
                 ? "Go to Rug Pull Detector"
-                : "Service Unavailable";
+                : "Service Unavailable, Click to Retry";
 
     const buttonClasses = [
         "inline-block px-6 py-3 rounded-lg text-lg transition font-medium border",
 
         isAvailable
             ? "bg-blue-600 hover:bg-blue-700 text-white border-blue-600 cursor-pointer"
-            : "bg-gray-300 text-gray-500 border-gray-300",
+            : "bg-gray-300 text-gray-500 border-gray-300 cursor-pointer",
     ].join(" ");
 
     return (
