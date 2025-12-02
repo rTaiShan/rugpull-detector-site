@@ -17,15 +17,12 @@ export default function Navigator() {
                 ? "Go to Rug Pull Detector"
                 : "Service Unavailable";
 
-    // 🎨 Tailwind styling based on status
     const buttonClasses = [
         "inline-block px-6 py-3 rounded-lg text-lg transition font-medium border",
 
         isAvailable
-            ? // 🔵 AVAILABLE: primary button
-              "bg-blue-600 hover:bg-blue-700 text-white border-blue-600 cursor-pointer"
-            : // ⚪ CHECKING or ❌ UNAVAILABLE: disabled grey button
-              "bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed",
+            ? "bg-blue-600 hover:bg-blue-700 text-white border-blue-600 cursor-pointer"
+            : "bg-gray-300 text-gray-500 border-gray-300",
     ].join(" ");
 
     return (
@@ -35,8 +32,7 @@ export default function Navigator() {
                 onClick={(e) => {
                     if (!isAvailable) {
                         e.preventDefault();
-                        // no reload here unless you want it:
-                        // window.location.reload();
+                        window.location.reload();
                     }
                 }}
                 className={buttonClasses}
