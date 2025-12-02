@@ -32,7 +32,10 @@ export default function Navigator() {
                 onClick={(e) => {
                     if (!isAvailable) {
                         e.preventDefault();
-                        window.location.reload();
+                        setIsAvailable(null);
+                        fetch(`${BASE_URL}/ping/`)
+                            .then((response) => setIsAvailable(response.ok))
+                            .catch(() => setIsAvailable(false));
                     }
                 }}
                 className={buttonClasses}
