@@ -8,7 +8,12 @@ export default function Navigator() {
         setIsAvailable(null);
         
         try {
-            const res = await fetch(`${BASE_URL}/ping/`);
+            const res = await fetch(`${BASE_URL}/ping/`, {
+                method: "GET",
+                headers: {
+                    "ngrok-skip-browser-warning": "true",
+                }
+            });
             const data = await res.json();
 
             if (res.ok && data?.status === "ok") {
