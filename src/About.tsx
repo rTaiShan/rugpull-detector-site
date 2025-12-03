@@ -50,12 +50,13 @@ export default function About() {
                 {/* 3 */}
                 <div className="bg-white shadow-sm rounded-xl p-6 flex flex-col">
                     <h3 className="text-xl font-semibold text-blue-600 mb-2">
-                        3. SARIMAX Price Anomaly Detection
+                        3. LSTM Price Anomaly Detection
                     </h3>
                     <p className="text-gray-700 flex-1">
-                        Historical price data is modeled with a <strong>SARIMAX (Seasonal ARIMA with Exogenous Variables)</strong>
-                        process to identify abrupt deviations from expected trends.
-                        These anomalies often coincide with liquidity withdrawals or token dumps by large holders.
+                        Price history is modeled using a <strong>Long Short-Term Memory (LSTM)</strong> network, which learns
+                        sequential patterns to identify unusual spikes or drops.
+                        Anomalies are flagged when the difference between the predicted and actual price exceeds a
+                        <strong>three-sigma threshold</strong>, indicating behavior far outside expected market variation.
                     </p>
                 </div>
 
