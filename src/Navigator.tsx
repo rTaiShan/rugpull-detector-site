@@ -4,23 +4,25 @@ export default function Navigator() {
     const BASE_URL = "https://amirah-unpulverized-noninstructively.ngrok-free.dev";
     const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
 
-    useEffect(() => {
-        const check = async () => {
-            try {
-                const res = await fetch(`${BASE_URL}/ping/`, { method: "GET" });
+    const check = async () => {
+        setIsAvailable(null);
+        
+        try {
+            const res = await fetch(`${BASE_URL}/ping/`);
+            const data = await res.json();
 
-                const data = await res.json();
-
-                if (res.ok && data?.status === "ok") {
-                    setIsAvailable(true);
-                } else {
-                    setIsAvailable(false);
-                }
-            } catch {
+            if (res.ok && data?.status === "ok") {
+                setIsAvailable(true);
+            } else {
                 setIsAvailable(false);
             }
-        };
+        } catch {
+            setIsAvailable(false);
+        }
+    };
 
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         check();
     }, []);
 
@@ -46,10 +48,7 @@ export default function Navigator() {
                 onClick={(e) => {
                     if (!isAvailable) {
                         e.preventDefault();
-                        setIsAvailable(null);
-                        fetch(`${BASE_URL}/ping/`)
-                            .then((response) => setIsAvailable(response.ok))
-                            .catch(() => setIsAvailable(false));
+                        check();
                     }
                 }}
                 className={buttonClasses}
