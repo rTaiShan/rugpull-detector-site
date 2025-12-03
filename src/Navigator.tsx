@@ -5,9 +5,23 @@ export default function Navigator() {
     const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
 
     useEffect(() => {
-        fetch(`${BASE_URL}/ping/`)
-            .then((response) => setIsAvailable(response.ok))
-            .catch(() => setIsAvailable(false));
+        const check = async () => {
+            try {
+                const res = await fetch(`${BASE_URL}/ping/`, { method: "GET" });
+
+                const data = await res.json();
+
+                if (res.ok && data?.status === "ok") {
+                    setIsAvailable(true);
+                } else {
+                    setIsAvailable(false);
+                }
+            } catch {
+                setIsAvailable(false);
+            }
+        };
+
+        check();
     }, []);
 
     const buttonText =
