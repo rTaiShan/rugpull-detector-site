@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function Navigator() {
-    const BASE_URL = "http://localhost:5000";
+    const BASE_URL = "https://amirah-unpulverized-noninstructively.ngrok-free.dev";
     const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
 
     useEffect(() => {
